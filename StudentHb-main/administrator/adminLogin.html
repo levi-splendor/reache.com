@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - administrators Hub</title>
+    <link rel="stylesheet" href="\administrator\adminLogin.css">
+
+    <script defer src="adminDashboard.js"></script>
+
+</head>
+<body>
+            
+    </section>
+    <section class="login-container" id="loginPage">
+        
+        <h1 class="login-title">Administrator</h1>
+        
+        <form class="adminForm" id="loginForm">
+            <div class="form-group">
+                <label for="username">AdminsName</label>
+                <input type="text" id="username" placeholder="Enter admin username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter admin password" required>
+            </div>
+            
+            <button type="submit" class="btn">Login</button>
+            
+        </form>
+<button id="signUp" class="btn">SignUp</button>
+<a style="text-decoration: none; color: rgb(47, 96, 233); position: relative; top: 18px;" class="clearForm" href="/index.html">Login or  SignUp as Student</a>
+    </div>
+    </section> 
+
+    <script type="module">
+     
+console.log("hel");
+const administrators = JSON.parse(localStorage.getItem('administrators'));
+
+const users = Object.create(administrators);
+
+const {fullName,matricule}=users;
+console.log(users.length)
+const isObjectEmpty = users.length;
+if(users.length === undefined){
+    console.log('object is empty')
+}else{
+    console.log('Object is not empty');
+}
+
+
+
+  // Update these with your credentials
+        // const adminUsername = "admin";
+        // const adminPassword = "admin123";
+
+
+        // Login functionality
+            
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+           
+         e.preventDefault();
+            
+                 if(users.length === undefined) {
+                alert('wrong cridentials');
+                console.log('There is no registerd administrator yet, try singning up as admin')
+                
+            }else{
+        const username = document.getElementById('username').value;
+
+localStorage.setItem('adminName', username)
+//  let name = username;
+// localStorage.setItem('adminName', name)
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+
+            const verifyUser = users.find(user => user.fullName === username && user.matricule === password)
+
+            if (verifyUser) {
+                alert(`Welcome back Admin: ${username}`)
+                window.location.href = 'adminDashboard.html'
+                console.log('you are a administrators')
+                
+            } else{
+                alert('wrong cridentials');
+            }
+            }
+
+            
+        });
+
+        //SignUp administrators
+const signUp = ()=>{
+    const signUpBtn = document.getElementById('signUp')
+        
+        signUpBtn.addEventListener('click', (event)=>{
+            event.preventDefault()
+            document.getElementById('loginPage').style.display = 'none'
+            // document.getElementById('regForm').style.display = 'block'
+            window.location.href = 'registerAdmin.html'
+      })        
+}
+
+// document.getElementById('loginInstead').addEventListener('click', (event)=>{
+//     window.location.href= 'index.html'
+// })
+
+//signUP button function call
+  signUp() 
+
+
+ 
+ 
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Hub</title>
+    <link rel="stylesheet" href="\student\index.css">
+
+</head>
+<body>
+              
+    </section>
+    <section class="login-container" id="loginPage">
+        <div>
+        <h1 class="login-title">Student Hub</h1>
+        
+        <form class="studentForm" id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Matricule</label>
+                <input type="password" id="password" placeholder="Enter your matricule" required>
+            </div>
+            
+            <button type="submit" class="btn">Login</button>
+            
+        </form>
+<button id="signUp" class="btn">SignUp</button>
+<div style="display: flex;justify-content: space-between; padding-top: 30px;"><a style="text-decoration: none; color: rgb(47, 96, 233); " href="\administrator\adminLogin.html">Login as Admin</a><a style="text-decoration: none; color: rgb(47, 96, 233); " href="\administrator\registerAdmin.html">SignUp as Admin</a></div>
+    </div>
+    </section> 
+
+    <script type="module">
+     
+console.log("hel");
+const student = JSON.parse(localStorage.getItem('students'));
+console.log(student);
+const users = Object.create(student);
+console.log(users)
+
+
+
+
+  // Update these with your credentials
+        // const adminUsername = "admin";
+        // const adminPassword = "admin123";
+
+
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+             if(users.length === undefined) {
+                alert('wrong cridentials');
+                console.log('There is no registerd Student yet, try singning up as a Student')
+                
+            }else{
+             const username = document.getElementById('username').value;
+             localStorage.setItem("studName", username)
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+
+            const verifyUser = users.find(user => user.fullName === username && user.matricule === password)
+
+            if (verifyUser) {
+                alert(`Welcome back ${username}`)
+                window.location.href = '/student/home.html'
+                console.log('you are a student')
+                
+            } else if(Array(users).length === 0) {
+                alert('wrong cridentials');
+            }else{
+                alert('wrong cridentials');
+            }
+            }
+                   
+        });
+
+        //SignUp Student
+const signUp = ()=>{
+    const signUpBtn = document.getElementById('signUp')
+        
+        signUpBtn.addEventListener('click', (event)=>{
+            event.preventDefault()
+            document.getElementById('loginPage').style.display = 'none'
+            // document.getElementById('regForm').style.display = 'block'
+            window.location.href = '/student/register.html'
+      })        
+}
+
+// document.getElementById('loginInstead').addEventListener('click', (event)=>{
+//     window.location.href= 'index.html'
+// })
+
+//signUP button function call
+  signUp()   
+
+    </script>
+    
+
+</body>
+</html>

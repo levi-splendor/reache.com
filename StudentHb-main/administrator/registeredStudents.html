@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Students - Student Hub</title>
+    <link rel="stylesheet" href="registeredStudents.css">
+    <link rel="stylesheet" href="\student\sidebar.css">
+
+    <script defer src="\student\sidebar.js"></script>
+    <script type="module" src="admin.js"></script>
+</head>
+<body>
+    <div class="container">
+      <header>        
+                <h1>Admin Dashboard</h1>
+                 
+            <div class="nav">
+                <a href="adminDashboard.html">Home</a>
+                <a href="registeredStudents.html">Registered Students</a>
+                <button class="logout" id="logoutBtn">Log Out</button>
+                <div>
+                    <img class="menu-icon" src="Icon (4).png" alt="">
+                </div>
+            </div>
+        </header>
+
+            <aside>
+             <img class="close-icon" src="\student\close_35dp_8176AF_FILL0_wght400_GRAD0_opsz40.svg"  alt="">
+
+            <a href="adminDashboard.html">Home</a>
+                <a href="registeredStudents.html">Registered Students</a>
+        </aside>
+
+        <div class="shade"></div>
+    
+
+        <div class="page-title">
+            
+            <h2>Registered Students</h2>
+            
+            
+        </div>
+
+        <div class="students-grid" id="studentsContainer">
+            <!-- Student cards here -->
+        </div>
+    </div>
+
+    <script>
+        // Get students from localStorage
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+
+        // DOM Elements
+        const studentsContainer = document.getElementById('studentsContainer');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderStudents();
+        });
+
+        // Render students list
+        function renderStudents() {
+            // Clear container
+            studentsContainer.innerHTML = '';
+
+            // Show empty state if no students
+            if (students.length === 0) {
+                studentsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No students registered yet</h3>
+                        <p>Students will appear here once they are registered</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render student cards
+            students.forEach(student => {
+                const studentCard = document.createElement('div');
+                studentCard.className = 'student-card';
+                studentCard.innerHTML = `
+                    <div class="student-header">
+                        <img src="${student.photoUrl}" alt="${student.fullName}" class="student-avatar">
+                        <div class="student-name">${student.fullName}</div>
+                        <div class="student-matricule">${student.matricule}</div>
+                    </div>
+                    <div class="student-body">
+                        <div class="student-detail">
+                            <span class="detail-label">Email:</span>
+                            <span class="detail-value">${student.email}</span>
+                        </div>
+                        <div class="student-detail">
+                            <span class="detail-label">School:</span>
+                            <span class="detail-value">${student.school}</span>
+                        </div>
+                        <div class="student-detail">
+                            <span class="detail-label">Department:</span>
+                            <span class="detail-value">${student.department}</span>
+                        </div>
+                        <div class="student-detail">
+                            <span class="detail-label">Gender:</span>
+                            <span class="detail-value">${student.gender}</span>
+                        </div>
+                        <div class="student-detail">
+                            <span class="detail-label">Date of Birth:</span>
+                            <span class="detail-value">${student.dateOfBirth}</span>
+                        </div>
+                        <div class="student-detail">
+                            <span class="detail-label">Phone:</span>
+                            <span class="detail-value">${student.phoneNumber}</span>
+                        </div>
+                    </div>
+                `;
+                
+                studentsContainer.appendChild(studentCard);
+            });
+        }
+    </script>
+</body>
+</html>

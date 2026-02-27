@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="container">
+        <header style="display:  none;">        
+            <h1>Student Hub</h1>
+            <div class="nav">
+                <a href="home.html">Home</a>
+                <a href="students.html">Registered Students</a>
+                <a href="about.html">About Us</a>
+                <button class="logout" id="logoutBtn">Log Out</button>
+            </div>
+        </header>
+
+        <div style="display: none;" class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="total-students">0</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="male-students">0</div>
+                <div class="stat-label">Male Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="female-students">0</div>
+                <div class="stat-label">Female Students</div>
+            </div>
+
+        </div>
+
+        <div class="main-content">
+            <div class="registration-form">
+                <h2>Register New Student</h2>
+                <form class="regBtn" id="studentForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matricule">Matricule</label>
+                        <input type="text" id="matricule" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="number" id="phoneNumber">
+                    </div>
+
+                   <div class="form-group">
+                    <label for="school">School</label>
+                    <select id="school" required>
+                        <option value="">Select School</option>
+                        <option value="COLTECH">COLTECH</option>
+                        <option value="NAHPI">NAHPI</option>
+                        <option value="FHS">FHS</option>
+                        <option value="ENS">ENS</option>
+                    </select>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department">
+                        <option value="Computer Engineering"> Computer Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    </select>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="photo">Student Photo</label>
+                    <input type="file" id="photo" accept="image/*">
+                   </div>
+<div style="display: flex;justify-content: space-between;">
+    <a style="text-decoration: none; background-color: rgb(255, 63, 63);" class="btn btn-primary" href="/index.html">Go Back</a>
+
+                  <button type="submit" class="btn btn-primary">Register Student</button>
+
+</div>
+                   
+
+                </form>
+            </div>
+
+            <div style="display: none;" class="student-list">
+                <h2 style="margin-bottom: 20px;">Registered Students</h2>
+
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search students...">
+                    <button class="btn btn-primary" id="searchBtn">Search</button>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All Students</button>
+                    <button class="filter-btn" data-filter="COLTECH">COLTECH</button>
+                    <button class="filter-btn" data-filter="NAHPI">NAHPI</button>
+                    <button class="filter-btn" data-filter="FHS">FHS</button>
+                </div>
+
+                <div id="studentsContainer">
+                    <div class="empty-state">
+                        
+                        <h3>No students registered yet</h3>
+                        <p>Add your first student using the registration form</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: none;" class="gallery-section">
+            <h2>Student Photo</h2>
+            <div id="studentGallery" class="gallery-container">
+                <!-- GALLERY ITEMS WILL BE ADDED HERE-->
+            </div>
+        </div>
+    </div>
+
+        <!-- Student Details here-->
+         <div class="modal" id="studentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Student Details</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div id="modalBody">
+                    <!--INFORMATION HERE-->
+                </div>
+            </div>
+         </div>
+
+
+         
+<script type="module" src="index.js"></script>
+<script src="register.js"></script>
+    
+</body>
+</html>
